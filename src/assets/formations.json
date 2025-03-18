@@ -1,0 +1,17 @@
+{
+  "formationen": [
+    {
+      "id": 1,
+      "short": "BR 101 + 2x Avmmz + 4x Bpmmz + Steuerwagen",
+      "vehicles": [
+        "br_101",
+        "avmmz_106_1",
+        "avmmz_106_1",
+        "bpmmz_284_4",
+        "bpmmz_284_4",
+        "bpmmz_284_4",
+        "bpmmbdzf_286_1"
+      ]
+    }
+  ]
+}

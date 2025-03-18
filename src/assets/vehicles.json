@@ -1,0 +1,55 @@
+{
+  "vehicles": [
+    {
+      "name": "Baureihe 101",
+      "code": "br_101",
+      "length": 19100,
+      "weight": 84,
+      "brake-weights": {
+        "R+E160": 174,
+        "R+E": 153,
+        "R": 120,
+        "P+E": 122,
+        "P": 84,
+        "G": 70
+      }
+    },
+    {
+      "name": "InterCity-Abteilwagen 1. Klasse",
+      "code": "avmmz_106_1",
+      "length": 26400,
+      "weight": 47,
+      "brake-weights": {
+        "<R>+Mg": 107,
+        "<R>": 75,
+        "R": 70,
+        "P": 54,
+        "G": 43
+      }
+    },
+    {
+      "name": "InterCity-Großraumwagen 2. Klasse",
+      "code": "bpmmz_284_4",
+      "length": 26400,
+      "weight": 44,
+      "brake-weights": {
+        "<R>+Mg": 105,
+        "<R>": 73,
+        "R": 68,
+        "P": 52,
+        "G": 41
+      }
+    },
+    {
+      "name": "IC Steuerwagen",
+      "code": "bpmmbdzf_286_1",
+      "length": 26400,
+      "weight": 48,
+      "brake-weights": {
+        "<R>+Mg": 92,
+        "<R>": 76,
+        "P": 52
+      }
+    }
+  ]
+}
