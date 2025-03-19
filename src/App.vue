@@ -63,6 +63,6 @@ onMounted(() => {
 .display-panel {
     display: flex;
     justify-content: space-evenly;
-    padding: 20px;
+    padding-top: 20px;
 }
 </style>
