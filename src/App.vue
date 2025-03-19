@@ -2,9 +2,6 @@
 import { onMounted } from "vue";
 import { useColorMode } from '@vueuse/core';
 
-import formations from './assets/formations.json';
-import vehicles from './assets/vehicles.json';
-
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Separator } from '@/components/ui/separator'
 
@@ -18,21 +15,32 @@ onMounted(() => {
 </script>
 
 <template>
-    <Tabs default-value="formation" class="w-[400px]">
-        <TabsList>
-            <TabsTrigger value="formation">
-                Vorgegebene Formationen
-            </TabsTrigger>
-            <TabsTrigger value="custom">
-                Eigene Formation
-            </TabsTrigger>
-        </TabsList>
-        <TabsContent value="formation">
-            <Formation/>
-        </TabsContent>
-        <TabsContent value="custom">
-            <Custom/>
-        </TabsContent>
-    </Tabs>
+    <div class="input-block">
+        <Tabs default-value="formation" class="w-[400px]">
+            <TabsList class="w-full">
+                <TabsTrigger value="formation">
+                    Vorgegebene Formationen
+                </TabsTrigger>
+                <TabsTrigger value="custom">
+                    Eigene Formation
+                </TabsTrigger>
+            </TabsList>
+            <TabsContent value="formation">
+                <Formation class="h-[250px] w-full" />
+            </TabsContent>
+            <TabsContent value="custom">
+                <Custom class="h-[250px] w-full" />
+            </TabsContent>
+        </Tabs>
+    </div>
     <Separator label="ZDE Eingabe"/>
 </template>
+
+<style>
+.input-block {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 350px;
+}
+</style>

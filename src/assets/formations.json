@@ -12,6 +12,19 @@
         "bpmmz_284_4",
         "bpmmbdzf_286_1"
       ]
+    },
+    {
+      "id": 2,
+      "short": "BR 101 + 1x Avmmz + 5x Bpmmz + BR 101",
+      "vehicles": [
+        "br_101",
+        "avmmz_106_1",
+        "bpmmz_284_4",
+        "bpmmz_284_4",
+        "bpmmz_284_4",
+        "bpmmz_284_4",
+        "br_101"
+      ]
     }
   ]
 }
