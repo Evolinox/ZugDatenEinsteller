@@ -9,6 +9,14 @@ import Formation from "@/views/Formation.vue";
 import Custom from "@/views/Custom.vue";
 import SevenSegmentBox from "@/components/ui/digits/SevenSegmentBox.vue";
 
+import { computed, ref } from 'vue'
+
+const vmax = ref(12)
+
+const vmaxStr = computed(() => vmax.value.toString().padStart(2, '0'))
+const vmaxHunderter = computed(() => parseInt(vmaxStr.value[0]))
+const vmaxZehner = computed(() => parseInt(vmaxStr.value[1]))
+
 onMounted(() => {
     const colorMode = useColorMode();
     colorMode.value = 'dark';
@@ -27,7 +35,7 @@ onMounted(() => {
                 </TabsTrigger>
             </TabsList>
             <TabsContent value="formation">
-                <Formation class="h-[250px] w-full" />
+                <Formation v-model="vmax" class="h-[250px] w-full" />
             </TabsContent>
             <TabsContent value="custom">
                 <Custom class="h-[250px] w-full" />
@@ -40,7 +48,7 @@ onMounted(() => {
             <SevenSegmentBox label="BRA" :digits="[9]" />
             <SevenSegmentBox label="BRH" :digits="[1, 8]" />
             <SevenSegmentBox label="ZL" :digits="[2, 1]" />
-            <SevenSegmentBox label="VMZ" :digits="[2, 0]" />
+            <SevenSegmentBox label="VMZ" :digits="[vmaxHunderter, vmaxZehner]" />
         </div>
     </div>
 </template>
