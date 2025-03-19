@@ -38,7 +38,7 @@ onMounted(() => {
                 <Formation v-model="vmax" class="h-[250px] w-full" />
             </TabsContent>
             <TabsContent value="custom">
-                <Custom class="h-[250px] w-full" />
+                <Custom v-model="vmax" class="h-[250px] w-full" />
             </TabsContent>
         </Tabs>
     </div>

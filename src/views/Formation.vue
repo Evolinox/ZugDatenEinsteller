@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { cn } from '@/lib/utils'
-import { Card, CardContent, CardDescription, CardHeader } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Combobox, ComboboxAnchor, ComboboxEmpty, ComboboxGroup, ComboboxInput, ComboboxItem, ComboboxItemIndicator, ComboboxList } from '@/components/ui/combobox'
 import { NumberField, NumberFieldContent, NumberFieldDecrement, NumberFieldIncrement, NumberFieldInput } from '@/components/ui/number-field'
@@ -29,14 +29,19 @@ watch(vmax, (newVal) => {
 
 <template>
     <Card class="w-[350px]">
-        <CardHeader>
-            <CardDescription>
-                Wähle aus verschiedenen vordefinierten Formationen aus.
-            </CardDescription>
-        </CardHeader>
         <CardContent class="space-y-2">
-            <div class="space-y-1">
-                <Label for="formation-select">Suche nach Lokomotive oder Wagen...</Label>
+            <div class="space-y-1 pt-4">
+                <NumberField id="vmax" v-model="vmax" :default-value="12" :min="0">
+                    <Label for="vmax">Höchstgeschwindigkeit lt. Fpl. (voller Zehner):</Label>
+                    <NumberFieldContent>
+                        <NumberFieldDecrement />
+                        <NumberFieldInput />
+                        <NumberFieldIncrement />
+                    </NumberFieldContent>
+                </NumberField>
+            </div>
+            <div class="space-y-1 pt-4">
+                <Label for="formation-select">Suche nach Lokomotiven oder Wagen...</Label>
                 <Combobox id="formation-select" by="label">
                     <ComboboxAnchor>
                         <div class="relative w-[350px] items-center">
@@ -46,7 +51,7 @@ watch(vmax, (newVal) => {
                             </span>
                         </div>
                     </ComboboxAnchor>
-                    <ComboboxList class="ml-36 w-[350px]">
+                    <ComboboxList class="ml-32 w-[350px]">
                         <ComboboxEmpty>
                             Keine Formation gefunden.
                         </ComboboxEmpty>
@@ -60,16 +65,6 @@ watch(vmax, (newVal) => {
                         </ComboboxGroup>
                     </ComboboxList>
                 </Combobox>
-            </div>
-            <div class="space-y-1 pt-2">
-                <NumberField id="vmax" v-model="vmax" :default-value="12" :min="0">
-                    <Label for="vmax">Höchstgeschwindigkeit lt. Fpl. (voller Zehner):</Label>
-                    <NumberFieldContent>
-                        <NumberFieldDecrement />
-                        <NumberFieldInput />
-                        <NumberFieldIncrement />
-                    </NumberFieldContent>
-                </NumberField>
             </div>
         </CardContent>
     </Card>
