@@ -1,16 +1,42 @@
-# Tauri + Vue + TypeScript
+ZugDatenEinsteller ZDE
+=====
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+**ZugDatenEinsteller** is a lightweight desktop tool for setting train data—such as braking percentage (Bremshundertstel), train length, top speed, and brake mode—for expert locomotives in **Train Sim World (TSW)**. It's built for players who enjoy a more realistic driving experience.
 
-## Recommended IDE Setup
+## Features
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) + [Tauri](https://marketplace.visualstudio.com/items?itemName=tauri-apps.tauri-vscode) + [rust-analyzer](https://marketplace.visualstudio.com/items?itemName=rust-lang.rust-analyzer)
+-  Easily set:
+    - **Braking percentage (Bremshundertstel)**
+    - **Train length**
+    - **Top speed**
+    - **Brake mode**
+-  Fast and lightweight
+-  Cross-platform thanks to [Tauri v2](https://tauri.app)
+-  Intuitive user interface powered by [Vue.js](https://vuejs.org) and [shadcn/vue](https://www.shadcn-vue.com/)
 
-## Type Support For `.vue` Imports in TS
+## Installation
 
-Since TypeScript cannot handle type information for `.vue` imports, they are shimmed to be a generic Vue component type by default. In most cases this is fine if you don't really care about component prop types outside of templates. However, if you wish to get actual prop types in `.vue` imports (for example to get props validation when using manual `h(...)` calls), you can enable Volar's Take Over mode by following these steps:
+1. Head over to the **[Releases](./releases)** section.
+2. Download the latest installer.
+3. Run the App called `Zugdateneinsteller`.
 
-1. Run `Extensions: Show Built-in Extensions` from VS Code's command palette, look for `TypeScript and JavaScript Language Features`, then right click and select `Disable (Workspace)`. By default, Take Over mode will enable itself if the default TypeScript extension is disabled.
-2. Reload the VS Code window by running `Developer: Reload Window` from the command palette.
+> Note: The app does not store any data and does not require an internet connection.
 
-You can learn more about Take Over mode [here](https://github.com/johnsoncodehk/volar/discussions/471).
+## Usage
+
+1. Launch the application.
+2. Enter your desired train formation (Choose from predefined ones or create your own).
+3. In TSW head over to your ZDE and enter the data.
+4. Done – enjoy your ride!
+
+## Contributing
+
+Contributions are very welcome! If you find bugs, have feature ideas, or want to actively help develop:
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'feat(amazing-feature): Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a pull request
+
+> Note: Please try to use [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for a cleaner commit history
