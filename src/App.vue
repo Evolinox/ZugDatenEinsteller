@@ -7,6 +7,7 @@ import { Separator } from '@/components/ui/separator'
 
 import Formation from "@/views/Formation.vue";
 import Custom from "@/views/Custom.vue";
+import SevenSegmentBox from "@/components/ui/digits/SevenSegmentBox.vue";
 
 onMounted(() => {
     const colorMode = useColorMode();
@@ -33,7 +34,15 @@ onMounted(() => {
             </TabsContent>
         </Tabs>
     </div>
-    <Separator label="ZDE Eingabe"/>
+    <Separator label="Zugdaten"/>
+    <div class="output-block">
+        <div class="display-panel">
+            <SevenSegmentBox label="BRA" :digits="[9]" />
+            <SevenSegmentBox label="BRH" :digits="[1, 8]" />
+            <SevenSegmentBox label="ZL" :digits="[2, 1]" />
+            <SevenSegmentBox label="VMZ" :digits="[2, 0]" />
+        </div>
+    </div>
 </template>
 
 <style>
@@ -42,5 +51,10 @@ onMounted(() => {
     justify-content: center;
     align-items: center;
     height: 350px;
+}
+.display-panel {
+    display: flex;
+    justify-content: space-evenly;
+    padding: 20px;
 }
 </style>
