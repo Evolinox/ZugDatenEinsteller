@@ -13,10 +13,12 @@
     "windows": [
       {
         "title": "ZugDatenEinsteller ZDE v1.0",
+        "fullscreen": false,
+        "resizable": false,
         "minWidth": 600,
-        "width": 700,
-        "minHeight": 400,
-        "height": 500
+        "width": 600,
+        "minHeight": 520,
+        "height": 520
       }
     ],
     "security": {

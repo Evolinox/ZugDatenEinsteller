@@ -47,6 +47,7 @@ const segments = computed(() => {
     position: relative;
     width: 40px;
     height: 70px;
+    background-color: #2E0D10;
 }
 .segment {
     position: absolute;
@@ -56,7 +57,7 @@ const segments = computed(() => {
 }
 .segment.active {
     opacity: 1;
-    background-color: orangered;
+    background-color: #ECC614;
 }
 
 /* Segmentpositionen */
