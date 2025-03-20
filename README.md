@@ -1,7 +1,9 @@
 ZugDatenEinsteller
 =====
 
-![zugdateneinsteller](https://github.com/user-attachments/assets/89b2ff23-9851-4735-9aec-2516d4a0a70a)
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/89b2ff23-9851-4735-9aec-2516d4a0a70a" height="450">
+</p>
 
 **ZugDatenEinsteller** is a lightweight desktop tool for setting train data—such as braking percentage (Bremshundertstel), train length, top speed, and brake mode—for expert locomotives in **Train Sim World (TSW)**. It's built for players who enjoy a more realistic driving experience.
 
