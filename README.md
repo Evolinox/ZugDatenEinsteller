@@ -1,5 +1,7 @@
-ZugDatenEinsteller ZDE
+ZugDatenEinsteller
 =====
+
+![zugdateneinsteller](https://github.com/user-attachments/assets/89b2ff23-9851-4735-9aec-2516d4a0a70a)
 
 **ZugDatenEinsteller** is a lightweight desktop tool for setting train data—such as braking percentage (Bremshundertstel), train length, top speed, and brake mode—for expert locomotives in **Train Sim World (TSW)**. It's built for players who enjoy a more realistic driving experience.
 
@@ -20,7 +22,8 @@ ZugDatenEinsteller ZDE
 2. Download the latest installer.
 3. Run the App called `Zugdateneinsteller`.
 
-> Note: The app does not store any data and does not require an internet connection.
+> [!NOTE]
+> The app does not store any data and does not require an internet connection.
 
 ## Usage
 
@@ -39,4 +42,5 @@ Contributions are very welcome! If you find bugs, have feature ideas, or want to
 4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a pull request
 
-> Note: Please try to use [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for a cleaner commit history
+> [!IMPORTANT]
+> Please try to use [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for a cleaner commit history
