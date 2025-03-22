@@ -1,33 +1,42 @@
 <script setup lang="ts">
-import { onMounted } from "vue";
+// Vue Imports
+import { onMounted, computed, ref, watch } from "vue";
 import { useColorMode } from '@vueuse/core';
 
+// Shadcn/Vue Components
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Separator } from '@/components/ui/separator'
 
+// Eigene Views/Komponenten
 import Formation from "@/views/Formation.vue";
 import Custom from "@/views/Custom.vue";
 import SevenSegmentBox from "@/components/ui/digits/SevenSegmentBox.vue";
 
-import { computed, ref, watch } from 'vue'
-
+// Import der Vehicle JSON Datei
 import vehicles from './assets/vehicles.json';
 
+// ZDE Variablen
 const formation = ref([])
-const vmax = ref(12)
-const bra = ref(0)
-const brh = ref([0, 0])
-const zl = ref([0, 0])
+const vmax = ref(120)    // Höchstgeschwindigkeit laut Fahrplan, standard = 120 km/h
+const bra = ref(9)      // Standardmäßig auf 9, wird später mal richtig implementiert
+const brh = ref([0, 0]) // Bremshundertstel, werden auf Basis der Formation berechnet
+const zl = ref([0, 0])  // Zuglänge, wird auch auf Basis der Formation berechnet
 
+// Dynamische aufteilung der Vmax in zwei Werte
+// Vmax = 160 km/h => vmaxHunderter = 1, vmaxZehner = 6
 const vmaxStr = computed(() => vmax.value.toString().padStart(2, '0'))
 const vmaxHunderter = computed(() => parseInt(vmaxStr.value[0]))
 const vmaxZehner = computed(() => parseInt(vmaxStr.value[1]))
 
+// Vue.js onMounted Call
+// Im Moment nur dafür da, denn Darkmode zu aktivieren
 onMounted(() => {
     const colorMode = useColorMode();
     colorMode.value = 'dark';
 })
 
+// Wird ausgeführt, sobald sich die Formation verändert
+// Berechnet im Moment nur die Zuglänge
 watch(formation, (newFormation) => {
     console.log('formation got updated: ', newFormation);
     console.log('number of vehicles: ', newFormation.vehicles.length);
@@ -49,6 +58,9 @@ watch(formation, (newFormation) => {
         Math.floor((totallengthM % 100) / 10)
     ]
 })
+
+// Wird ausgeführt, sobald sich die Vmax verändert
+// Dient lediglich dem logging
 watch(vmax, (newVmax) => {
     console.log('vmax got updated: ', newVmax);
 })
