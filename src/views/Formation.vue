@@ -8,22 +8,27 @@ import { NumberField, NumberFieldContent, NumberFieldDecrement, NumberFieldIncre
 import { Check, Search } from 'lucide-vue-next'
 
 import formations from '../assets/formations.json';
-import vehicles from '../assets/vehicles.json';
 
 import { ref, watch } from 'vue'
 
-// Externe Anbindung an Parent ermöglichen
-const props = defineProps<{ modelValue: number }>()
-const emit = defineEmits<{
-    (e: 'update:modelValue', value: number): void
+const props = defineProps<{
+    formation: Array<{ locoId: string; brakeIndex: number }>
+    vmax: number
 }>()
 
-// Lokaler Wert, initialisiert aus dem Parent
-const vmax = ref(props.modelValue)
+const emit = defineEmits<{
+    (e: 'update:formation', value: Array<{ locoId: string; brakeIndex: number }>): void
+    (e: 'update:vmax', value: number): void
+}>()
 
-// Whenever vmax changes, emit it to parent
+const formation = ref(props.formation)
+const vmax = ref(props.vmax)
+
+watch(formation, (newVal) => {
+    emit('update:formation', newVal)
+})
 watch(vmax, (newVal) => {
-    emit('update:modelValue', newVal)
+    emit('update:vmax', newVal)
 })
 </script>
 
@@ -42,7 +47,7 @@ watch(vmax, (newVal) => {
             </div>
             <div class="space-y-1 pt-4">
                 <Label for="formation-select">Suche nach Lokomotiven oder Wagen...</Label>
-                <Combobox id="formation-select" by="label">
+                <Combobox id="formation-select" by="label" v-model="formation">
                     <ComboboxAnchor>
                         <div class="relative w-[350px] items-center">
                             <ComboboxInput class="pl-9" :display-value="(val) => val?.short ?? ''" placeholder="Wähle Formation..." />

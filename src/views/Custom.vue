@@ -2,29 +2,29 @@
 import { cn } from '@/lib/utils'
 import { Card, CardContent } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
-import { Combobox, ComboboxAnchor, ComboboxEmpty, ComboboxGroup, ComboboxInput, ComboboxItem, ComboboxItemIndicator, ComboboxList } from '@/components/ui/combobox'
 import { NumberField, NumberFieldContent, NumberFieldDecrement, NumberFieldIncrement, NumberFieldInput } from '@/components/ui/number-field'
-
-import { Check, Search } from 'lucide-vue-next'
-
-import formations from '../assets/formations.json';
-import vehicles from '../assets/vehicles.json';
-
-import { ref, watch } from 'vue'
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 
-// Externe Anbindung an Parent ermöglichen
-const props = defineProps<{ modelValue: number }>()
-const emit = defineEmits<{
-    (e: 'update:modelValue', value: number): void
+import { ref, watch } from 'vue'
+
+const props = defineProps<{
+    formation: Array<{ locoId: string; brakeIndex: number }>
+    vmax: number
 }>()
 
-// Lokaler Wert, initialisiert aus dem Parent
-const vmax = ref(props.modelValue)
+const emit = defineEmits<{
+    (e: 'update:formation', value: Array<{ locoId: string; brakeIndex: number }>): void
+    (e: 'update:vmax', value: number): void
+}>()
 
-// Whenever vmax changes, emit it to parent
+const formation = ref(props.formation)
+const vmax = ref(props.vmax)
+
+watch(formation, (newVal) => {
+    emit('update:formation', newVal)
+})
 watch(vmax, (newVal) => {
-    emit('update:modelValue', newVal)
+    emit('update:vmax', newVal)
 })
 </script>
 

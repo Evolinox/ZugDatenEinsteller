@@ -9,9 +9,15 @@ import Formation from "@/views/Formation.vue";
 import Custom from "@/views/Custom.vue";
 import SevenSegmentBox from "@/components/ui/digits/SevenSegmentBox.vue";
 
-import { computed, ref } from 'vue'
+import { computed, ref, watch } from 'vue'
 
+import vehicles from './assets/vehicles.json';
+
+const formation = ref([])
 const vmax = ref(12)
+const bra = ref(0)
+const brh = ref([0, 0])
+const zl = ref([0, 0])
 
 const vmaxStr = computed(() => vmax.value.toString().padStart(2, '0'))
 const vmaxHunderter = computed(() => parseInt(vmaxStr.value[0]))
@@ -20,6 +26,31 @@ const vmaxZehner = computed(() => parseInt(vmaxStr.value[1]))
 onMounted(() => {
     const colorMode = useColorMode();
     colorMode.value = 'dark';
+})
+
+watch(formation, (newFormation) => {
+    console.log('formation got updated: ', newFormation);
+    console.log('number of vehicles: ', newFormation.vehicles.length);
+    // Calculate new Trainlength
+    let totallengthMm = 0
+    for (const loco of newFormation.vehicles) {
+        for (const vehicle of vehicles.vehicles) {
+            if (vehicle.code === loco) {
+                totallengthMm += vehicle.length;
+            }
+        }
+    }
+    console.log(totallengthMm)
+    // Länge auf vollen Zehner aufrunden
+    const totallengthM = Math.ceil(totallengthMm / 1000 / 10) * 10
+
+    zl.value = [
+        Math.floor(totallengthM / 100),
+        Math.floor((totallengthM % 100) / 10)
+    ]
+})
+watch(vmax, (newVmax) => {
+    console.log('vmax got updated: ', newVmax);
 })
 </script>
 
@@ -35,19 +66,19 @@ onMounted(() => {
                 </TabsTrigger>
             </TabsList>
             <TabsContent value="formation">
-                <Formation v-model="vmax" class="h-[250px] w-full" />
+                <Formation v-model:formation="formation" v-model:vmax="vmax" class="h-[250px] w-full" />
             </TabsContent>
             <TabsContent value="custom">
-                <Custom v-model="vmax" class="h-[250px] w-full" />
+                <Custom v-model:formation="formation" v-model:vmax="vmax" class="h-[250px] w-full" />
             </TabsContent>
         </Tabs>
     </div>
     <Separator label="Zugdaten"/>
     <div class="output-block">
         <div class="display-panel">
-            <SevenSegmentBox label="BRA" :digits="[9]" />
-            <SevenSegmentBox label="BRH" :digits="[1, 8]" />
-            <SevenSegmentBox label="ZL" :digits="[2, 1]" />
+            <SevenSegmentBox label="BRA" :digits="[bra]" />
+            <SevenSegmentBox label="BRH" :digits="[brh[0], brh[1]]" />
+            <SevenSegmentBox label="ZL" :digits="[zl[0], zl[1]]" />
             <SevenSegmentBox label="VMZ" :digits="[vmaxHunderter, vmaxZehner]" />
         </div>
     </div>
@@ -63,6 +94,6 @@ onMounted(() => {
 .display-panel {
     display: flex;
     justify-content: space-evenly;
-    padding-top: 20px;
+    padding-top: 10px;
 }
 </style>
