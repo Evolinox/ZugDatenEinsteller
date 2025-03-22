@@ -36,8 +36,8 @@ watch(vmax, (newVal) => {
     <Card class="w-[350px]">
         <CardContent class="space-y-2">
             <div class="space-y-1 pt-4">
-                <NumberField id="vmax" v-model="vmax" :default-value="12" :min="0">
-                    <Label for="vmax">Höchstgeschwindigkeit lt. Fpl. (voller Zehner):</Label>
+                <NumberField id="vmax" v-model="vmax" :default-value="120" :min="10" :max="300" :step="10">
+                    <Label for="vmax">Höchstgeschwindigkeit lt. Fpl.:</Label>
                     <NumberFieldContent>
                         <NumberFieldDecrement />
                         <NumberFieldInput />
