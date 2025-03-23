@@ -44,7 +44,7 @@ watch(formation, (newFormation) => {
     let totallengthMm = 0
     for (const loco of newFormation.vehicles) {
         for (const vehicle of vehicles.vehicles) {
-            if (vehicle.code === loco) {
+            if (vehicle.code === loco[0]) {
                 totallengthMm += vehicle.length;
             }
         }
@@ -57,6 +57,25 @@ watch(formation, (newFormation) => {
         Math.floor(totallengthM / 100),
         Math.floor((totallengthM % 100) / 10)
     ]
+
+    // Bremshundertstel berechnen
+    let totalBrakeWeight = 0
+    let totalTrainWeight = 0
+    for (const loco of newFormation.vehicles) {
+        for (const vehicle of vehicles.vehicles) {
+            if (vehicle.code === loco[0]) {
+                const brakeWeightValues = Object.values(vehicle.brakeWeights);
+                totalTrainWeight += vehicle.weight;
+                totalBrakeWeight += brakeWeightValues[loco[1]];
+            }
+        }
+    }
+    console.log(totalBrakeWeight)
+    console.log(totalTrainWeight)
+    const bremshuntertstel = (totalBrakeWeight / totalTrainWeight) * 100;
+    console.log(bremshuntertstel)
+    const brhRounded = Math.floor(bremshuntertstel / 10) * 10;
+    brh.value = brhRounded.toString().padStart(2, '0').slice(0, 2).split('').map(Number);
 })
 
 // Wird ausgeführt, sobald sich die Vmax verändert
