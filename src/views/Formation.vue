@@ -23,7 +23,6 @@ const emit = defineEmits<{
 }>()
 
 const formation = ref(props.formation)
-const selectedFormation = ref();
 const vmax = ref(props.vmax)
 
 watch(formation, (newVal) => {
@@ -74,7 +73,7 @@ watch(vmax, (newVal) => {
                         <ComboboxGroup>
                             <ComboboxItem v-for="f in formations.formationen" :key="f.id" :value="f">
                                 {{ f.short }}
-                                <ComboboxItemIndicator>
+                                <ComboboxItemIndicator v-if="formation.id === f.id">
                                     <Check :class="cn('ml-auto h-4 w-4')"/>
                                 </ComboboxItemIndicator>
                             </ComboboxItem>
