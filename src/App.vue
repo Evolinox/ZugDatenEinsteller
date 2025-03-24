@@ -122,9 +122,15 @@ watch(vmax, (newVmax) => {
     align-items: center;
     height: 350px;
 }
+.output-block {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 170px;
+}
 .display-panel {
     display: flex;
     justify-content: space-evenly;
-    padding-top: 10px;
+    width: 100%;
 }
 </style>
