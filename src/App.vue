@@ -8,19 +8,22 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Separator } from '@/components/ui/separator'
 
 // Eigene Views/Komponenten
-import Formation from "@/views/Formation.vue";
+import Predefined from "@/views/Predefined.vue";
 import Custom from "@/views/Custom.vue";
 import SevenSegmentBox from "@/components/ui/digits/SevenSegmentBox.vue";
+
+// Eigene Types
+import { Formation } from "@/components/types/formation.types.ts";
 
 // Import der Vehicle JSON Datei
 import vehicles from './assets/vehicles.json';
 
 // ZDE Variablen
-const formation = ref([])
+const formation = ref<Formation[]>([])
 const vmax = ref(120)    // Höchstgeschwindigkeit laut Fahrplan, standard = 120 km/h
 const bra = ref(9)      // Standardmäßig auf 9, wird später mal richtig implementiert
-const brh = ref([0, 0]) // Bremshundertstel, werden auf Basis der Formation berechnet
-const zl = ref([0, 0])  // Zuglänge, wird auch auf Basis der Formation berechnet
+const brh = ref([0, 0]) // Bremshundertstel, werden auf Basis der Predefined berechnet
+const zl = ref([0, 0])  // Zuglänge, wird auch auf Basis der Predefined berechnet
 
 // Dynamische aufteilung der Vmax in zwei Werte
 // Vmax = 160 km/h => vmaxHunderter = 1, vmaxZehner = 6
@@ -35,9 +38,9 @@ onMounted(() => {
     colorMode.value = 'dark';
 })
 
-// Wird ausgeführt, sobald sich die Formation verändert
+// Wird ausgeführt, sobald sich die Predefined verändert
 // Berechnet im Moment nur die Zuglänge
-watch(formation, (newFormation) => {
+watch(formation, (newFormation: Formation) => {
     console.log('formation got updated: ', newFormation);
     console.log('number of vehicles: ', newFormation.vehicles.length);
     // Calculate new Trainlength
@@ -87,17 +90,17 @@ watch(vmax, (newVmax) => {
 
 <template>
     <div class="input-block">
-        <Tabs default-value="formation" class="w-[400px]">
+        <Tabs default-value="predefined" class="w-[400px]">
             <TabsList class="w-full">
-                <TabsTrigger value="formation">
+                <TabsTrigger value="predefined">
                     Vorgegebene Formationen
                 </TabsTrigger>
                 <TabsTrigger value="custom">
                     Eigene Formation
                 </TabsTrigger>
             </TabsList>
-            <TabsContent value="formation">
-                <Formation v-model:formation="formation" v-model:vmax="vmax" class="h-[250px] w-full" />
+            <TabsContent value="predefined">
+                <Predefined v-model:formation="formation" v-model:vmax="vmax" class="h-[250px] w-full" />
             </TabsContent>
             <TabsContent value="custom">
                 <Custom v-model:formation="formation" v-model:vmax="vmax" class="h-[250px] w-full" />

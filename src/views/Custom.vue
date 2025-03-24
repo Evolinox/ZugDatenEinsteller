@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { cn } from '@/lib/utils'
 import { Card, CardContent } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { NumberField, NumberFieldContent, NumberFieldDecrement, NumberFieldIncrement, NumberFieldInput } from '@/components/ui/number-field'
@@ -7,13 +6,15 @@ import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 
 import { ref, watch } from 'vue'
 
+import { Formation } from "@/components/types/formation.types.ts";
+
 const props = defineProps<{
-    formation: Array<{ locoId: string; brakeIndex: number }>
+    formation: Formation[]
     vmax: number
 }>()
 
 const emit = defineEmits<{
-    (e: 'update:formation', value: Array<{ locoId: string; brakeIndex: number }>): void
+    (e: 'update:formation', value: Formation[]): void
     (e: 'update:vmax', value: number): void
 }>()
 

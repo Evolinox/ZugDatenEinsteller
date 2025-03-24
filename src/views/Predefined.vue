@@ -35,10 +35,6 @@ watch(formation, (newVal) => {
 watch(vmax, (newVal) => {
     emit('update:vmax', newVal)
 })
-
-function clearFormation() {
-    formation.value = ([])
-}
 </script>
 
 <template>
@@ -90,11 +86,6 @@ function clearFormation() {
                         </ComboboxGroup>
                     </ComboboxList>
                 </Combobox>
-            </div>
-            <div class="space-y-1 pt-4">
-                <Button class="w-full" variant="destructive" :disabled="!validFormation" @click="clearFormation">
-                    Auswahl aufheben
-                </Button>
             </div>
         </CardContent>
     </Card>
