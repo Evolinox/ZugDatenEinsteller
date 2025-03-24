@@ -9,28 +9,36 @@ import { NumberField, NumberFieldContent, NumberFieldDecrement, NumberFieldIncre
 import {Check, ChevronsUpDown, Search} from 'lucide-vue-next'
 
 import formations from '../assets/formations.json';
+import {Formation} from "@/components/types/formation.types.ts";
 
 import {ref, watch} from 'vue'
+import {ScrollArea} from "@/components/ui/scroll-area";
 
 const props = defineProps<{
-    formation: Array<{ locoId: string; brakeIndex: number }>
+    formation: Formation[]
     vmax: number
 }>()
 
 const emit = defineEmits<{
-    (e: 'update:formation', value: Array<{ locoId: string; brakeIndex: number }>): void
+    (e: 'update:formation', value: Formation[]): void
     (e: 'update:vmax', value: number): void
 }>()
 
 const formation = ref(props.formation)
 const vmax = ref(props.vmax)
+const validFormation = ref(false)
 
 watch(formation, (newVal) => {
     emit('update:formation', newVal)
+    validFormation.value = newVal.vehicles.length > 0;
 })
 watch(vmax, (newVal) => {
     emit('update:vmax', newVal)
 })
+
+function clearFormation() {
+    formation.value = ([])
+}
 </script>
 
 <template>
@@ -47,7 +55,7 @@ watch(vmax, (newVal) => {
                 </NumberField>
             </div>
             <div class="space-y-1 pt-4">
-                <Label for="formation-select">Suche nach Lokomotiven oder Wagen...</Label>
+                <Label for="formation-select">Ausgewählte Formation:</Label>
                 <Combobox id="formation-select" v-model="formation" by="label">
                     <ComboboxAnchor class="w-[350px]" as-child>
                         <ComboboxTrigger as-child>
@@ -71,15 +79,22 @@ watch(vmax, (newVal) => {
                             Keine Formation gefunden.
                         </ComboboxEmpty>
                         <ComboboxGroup>
-                            <ComboboxItem v-for="f in formations.formationen" :key="f.id" :value="f">
-                                {{ f.short }}
-                                <ComboboxItemIndicator v-if="formation.id === f.id">
-                                    <Check :class="cn('ml-auto h-4 w-4')"/>
-                                </ComboboxItemIndicator>
-                            </ComboboxItem>
+                            <ScrollArea class="h-40">
+                                <ComboboxItem class="mr-3" v-for="f in formations.formationen" :key="f.id" :value="f">
+                                    {{ f.short }}
+                                    <ComboboxItemIndicator v-if="formation.id === f.id">
+                                        <Check :class="cn('ml-auto h-4 w-4')"/>
+                                    </ComboboxItemIndicator>
+                                </ComboboxItem>
+                            </ScrollArea>
                         </ComboboxGroup>
                     </ComboboxList>
                 </Combobox>
+            </div>
+            <div class="space-y-1 pt-4">
+                <Button class="w-full" variant="destructive" :disabled="!validFormation" @click="clearFormation">
+                    Auswahl aufheben
+                </Button>
             </div>
         </CardContent>
     </Card>
