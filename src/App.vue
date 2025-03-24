@@ -129,7 +129,7 @@ watch(vmax, (newVmax) => {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 170px;
+    height: 150px;
 }
 .display-panel {
     display: flex;

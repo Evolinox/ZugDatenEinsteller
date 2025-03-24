@@ -1,6 +1,6 @@
 {
   "$schema": "https://schema.tauri.app/config/2",
-  "productName": "zugdateneinsteller",
+  "productName": "Zugdateneinsteller",
   "version": "1.0.0",
   "identifier": "com.zugdateneinsteller.app",
   "build": {
@@ -13,11 +13,12 @@
     "windows": [
       {
         "title": "ZugDatenEinsteller ZDE v1.0",
+        "titleBarStyle": "Transparent",
         "center": true,
         "maximizable": false,
         "resizable": false,
         "width": 600,
-        "height": 520
+        "height": 500
       }
     ],
     "security": {
